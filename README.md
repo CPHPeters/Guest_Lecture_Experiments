@@ -3,7 +3,7 @@
 Want to learn how to build a state-of-the-art experiment and run it in an online participant pool? This repository will get you started.
 
 <p align = "center">
-  <span style='font-size: 15pt'><strong>Author:</strong> Ties de Kok (<a href="https://www.tilburguniversity.edu/staff/c-p-h-peters">Profile</a>)</span>
+  <span style='font-size: 15pt'><strong>Author:</strong> Christian Peters (<a href="https://www.tilburguniversity.edu/staff/c-p-h-peters">Profile</a>)</span>
 </p>
 
 ## Connecting oTree to Heroku
