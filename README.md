@@ -1,6 +1,10 @@
-# Guest Lecture Experiments
+<h1 align="center">
+  <img src="https://imgur.com/gallery/p2BXKxm" alt="Running Online Expeirments" title="Running Online Experiments" />
+</h1>
 
+<p>
 Want to learn how to build a state-of-the-art experiment and run it in an online participant pool? This repository will get you started.
+</p>
 
 <p align = "center">
   <span style='font-size: 15pt'><strong>Author:</strong> Christian Peters (<a href="https://www.tilburguniversity.edu/staff/c-p-h-peters">Profile</a>)</span>
@@ -10,9 +14,23 @@ Want to learn how to build a state-of-the-art experiment and run it in an online
    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 </p>  
 
-## Building your Experiment in oTree
+## Table of Contents
 
-## Connecting oTree to Heroku
+* [Introdcution](#introduction)
+* [Installation](#installation)
+* [Building your Experiment in oTree](#otree)
+* [Connecting oTree to Heroku](#heroku)
+* [Publishing your Experiment on Amazon Mechanical Turk](#mturk)
+* [Questions?](#questions)
+* [License](#license)
+
+<h2 id="introduction">Introduction</h2>
+
+<h2 id="installation">Installation</h2>
+
+<h2 id="otree">Building your Experiment in oTree</h2>
+
+<h2 id="heroku">Connecting oTree to Heroku</h2>
 
 In order to make the oTree instance accessible globally, a server is needed. We use [Heroku](http://herokuapp.com). There are two ways of For this, we conducted the following steps:
 
@@ -80,7 +98,7 @@ heroku run "otree reset db"
 
 Or do it manually in the Heroku app. It is then important to upload a new version of the instance.
 
-## Publishing your Experiment on Amazon Mechanical Turk
+<h2 id="mturk">Publishing your Experiment on Amazon Mechanical Turk</h2>
 
 
 ##
