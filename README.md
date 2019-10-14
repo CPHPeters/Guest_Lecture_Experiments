@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://imgur.com/gallery/p2BXKxm" alt="Running Online Expeirments" title="Running Online Experiments" />
+  <img src="https://imgur.com/a/p2BXKxm" alt="Running Online Expeirments" title="Running Online Experiments" />
 </h1>
 
 <p>
@@ -16,7 +16,7 @@ Want to learn how to build a state-of-the-art experiment and run it in an online
 
 ## Table of Contents
 
-* [Introdcution](#introduction)
+* [Introduction](#introduction)
 * [Installation](#installation)
 * [Building your Experiment in oTree](#otree)
 * [Connecting oTree to Heroku](#heroku)
