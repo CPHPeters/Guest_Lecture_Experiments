@@ -17,6 +17,10 @@ Want to learn how to build a state-of-the-art experiment and run it in an online
 * [Introduction](#introduction)
 * [Installation](#installation)
 * [Building your Experiment in oTree](#otree)
+    * [Templates](#templates)
+    * [Models.py](#models)
+    * [Pages.py](#pages)
+    * [Settings.py](#settings)
 * [Connecting oTree to Heroku](#heroku)
     * [oTree Hub](#otreehub)
     * [GitHub](#github)
@@ -74,6 +78,23 @@ otree startapp app_name
 
 <h2 id="otree">Building Your Experiment in oTree</h2>
 
+<p>Once you have installed oTree and created an app you are ready to build your own experiment. Before starting, it might be good to look at a 'finished product', an experiment that is actually used for research. <a href="https://taxexperiment.herokuapp.com" target="_blank">Click here</a> to see an experiment used in a recent study by Bart Dierynck, Martin Jacob, Maximilian Müller, Victor van Pelt, and myself. Examples of other experiments and example projects can be found at <a href="https://demo.otree.org" target="_blank">demo.otree.org</a>.</p>
+
+<p>If you examine an experiment, you will see that from a programming-perspective an experiment consists of some things:</p>
+
+<ul>
+  <li>Each page has a certain lay-out and text</li>
+  <li>There are multiple pages in a certain order</li>
+  <li>Variables are elicited from participants</li>
+  <li>There are some rules of the experiment (e.g., monetary payoffs)</li>
+</ul>
+
+<p>These can be seen as the four building blocks of oTree. Before we start programming an example experiment, I will first explain each of the building blocks. You can edit each file by opening Pycharm. Click on `Open` and search for the directory of your oTree project (See * [Installation](#installation)).</p>
+
+<h3 id="templates">Templates</h3>
+
+The first building block are the templates: every page in an experiment is a template with a certain lay-out and text. Templates are `.html` files in which you can use `HTML`, `CSS`, `Javascript`, and `Django`.
+
 <h2 id="heroku">Connecting oTree to Heroku</h2>
 
 <p style="text-align:justify;">In order to make the oTree instance accessible globally, a server is needed. We use <a href="http://herokuapp.com" target="_blank">Heroku</a>. Heroku is a cloud hosting server that provides a platform for apps, including app management and instant scaling (i.e., you pay for what you use). You can deploy an experiment to Heroku for free. However, if you run an experiment with a substantial number of participants, you must upgrade to a paid server. As you can immediately scale the server capacity it is not expensive to use. For instance, if you run your experiment in the timeframe of three days, you only pay 3/30th of the monthly fees as you scale it up before you use it and scale it down after you use it. After you have created an account on Heroku, download and install the <a href="https://devcenter.heroku.com/articles/heroku-cli" target="_blank">Heroku Command Line Interface</a>. After installing the Heroku Command Line Interface, there are three ways to deploy experiments to Heroku: oTree Hub, GitHub, and using your command prompt or terminal (for Mac users). oTree Hub is the easiest way and requires least coding. However, convenience comes at a cost as you can have limited free project space and everything you deploy using oTree Hub becomes publicly available immediately, unless you pay. GitHub also does not require programming and you can even auto-deploy your experiment everytime you commit changes to GitHub. If you are not daunted by some programming you can use the command line to deploy your experiment to Heroku. Next, I will discuss how to deploy by each method separately.</p>
@@ -98,7 +119,7 @@ otree zip
 
 ```bash
 heroku login
-heroku run "otree reset db"
+heroku run "otree reset db" --APP your_appname
 ```
 <p style="text-align:justify;"> Alternatively, you can go to your app in Heroku, click on Heroku Postgres, Settings, and Reset Database. </p>
 
