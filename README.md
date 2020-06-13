@@ -139,7 +139,7 @@ If you want to ask a multiple-choice question, you can also use an `IntegerField
 
 ```python
     Financial_Literacy = models.IntegerField(
-        label = "Suppose you had $100 in a savings account and the interest rate was 2% per year. After 5 years, how much do you think                    you would have in the account if you left the money to grow?",
+        label = "Suppose you had $100 in a savings account and the interest rate was 2% per year. After 5 years, how much do you think you would have in the account if you left the money to grow?",
         choices = [
             [1, 'More than $102'],
             [2, 'Exactly $102'],
@@ -163,7 +163,11 @@ class Subsession(BaseSubsession):
             player.treatment = next(number)
 ```
 
-In this code, whenever a subsession is created the following function is executed (`def creating_session(self):`). Here, `(self)` refers to the subsession that is created. We create a variable `number` that cycles between 0 and 1. `itertools.cycle` is a tool that can be used to make sure you have balanced treatments. Next, we start a `for-loop` in which for every player, the player is assigned to a variable `treatment`, which either takes the value `0` or `1`.
+In this code, whenever a subsession is created the following function is executed (`def creating_session(self):`). Here, `(self)` refers to the subsession that is created. We create a variable `number` that cycles between 0 and 1. `itertools.cycle` is a tool that can be used to make sure you have balanced treatments. Next, we start a `for-loop` in which for every player, the player is assigned to a variable `treatment`, which either takes the value `0` or `1`. To do so, you create an empty variable on the player level where the number can be stored:
+
+```python
+treatment = models.IntegerField()
+```
 
 <h3 id="pages">Pages.py</h3>
 
@@ -187,10 +191,10 @@ Moreover, there are a battery of functions that can be used to specify condition
 
 The last building block of oTree is `Settings.py`. Here you define some overarching settings of your oTree project, such as the language used, the currency used, your admin username and password, how experimental currency translates to real-world currency, and the apps that are available. For the latter, if you have an app called `attribute_substitution`. You can make it available in your oTree server by typing:
 
-```
+```python
 SESSION_CONFIGS = [
     dict(
-       name='attribute substitution',
+       name='attribute_substitution',
        display_name="Attribute Substitution Game",
        num_demo_participants=3,
        app_sequence=['attribute_substitution']
@@ -198,13 +202,13 @@ SESSION_CONFIGS = [
 ]
 ```
 
-Here, the name and display name are whatever you prefer. The number of demo participants is the number of slots available to play a demo version of the experiment. The most important thing here is the `app_sequence`. In the `app_sequence` you define the sequence of apps that is displayed to participants. Suppose that you want to combine the `attribute_substitution` app with a public goods game or a survey, you can add `, public_goods` or `survey`, respectively.
+Here, the name and display name are whatever you prefer (for name you cannot use spaces). The number of demo participants is the number of slots available to play a demo version of the experiment. The most important thing here is the `app_sequence`. In the `app_sequence` you define the sequence of apps that is displayed to participants. Suppose that you want to combine the `attribute_substitution` app with a public goods game or a survey, you can add `, public_goods` or `survey`, respectively.
 
 <h2 id="first_experiment">Your First Experiment</h2>
 
 Now you are familiar with the building blocks of oTree, you are ready to build your first experiment. As an illustration, I will use an experiment that is very easy to program: an experiment to test attribute substitution. Attribute substitution is a powerful psychological concept that occurs when an individual has to make a judgment (of a target attribute) that is computationally complex, and instead substitutes a more easily calculated heuristic attribute. The study by Strack, Martin, & Schwarz (1988) provides an excellent example of attribute substitution. In this study college students answered a survey that included these two questions: “How happy are you with your life in general?” and “How many dates did you have last month?”. The correlation between the two questions was negligible when they occurred in the order shown, but it rose to 0.66 when the dating question was asked first. This indicates that the students who had to make a difficult judgment about their happiness, substituted the target attribute (how happy they are) with an easier heuristic attribute (the number of dates they had last month).
 
-We will replicate this 
+We will replicate this study based on the building blocks. Instead of asking how many dates a person had, we will ask how many likes a person had 
 
 <h2 id="heroku">Connecting oTree to Heroku</h2>
 
@@ -253,16 +257,19 @@ cd '/Users/Name/Folder/'
 heroku login
 ```
 
-<p style="text-align:justify;">If the above command does not work, you probably have not installed Heroku CLI properly. Since you are already in the project root folder you can create the .git here.</p>
-
-```bash
-git init
-```
+<p style="text-align:justify;">If the above command does not work, you probably have not installed Heroku CLI properly. 
 
 <p style="text-align:justify;">Then, you can create a new Heroku-app, if you don't have one yet.</p>
 
 ```bash
-heroku create my-app-name
+heroku create your_appname
+```
+
+Since you are already in the project root folder you can create the .git here.</p>
+
+```bash
+git init
+heroku git:remote -a your_appname
 ```
 
 <p style="text-align:justify;">You can push your code locally to Heroku. If you already have an app you can use '<span style="color:blue;>--your_appname</span>' to specifically refer to your app.</p>
@@ -281,7 +288,7 @@ git push heroku master
 <p style="style="text-align:justify;">If already used, reset the oTree database.</p>
 
 ```bash
-heroku run "otree resetdb"
+heroku run "otree resetdb" --APP your_appname
 ```
 
 <p style="text-align:justify;">In order to view the Heroku app, enter the following command or enter the URL in your browser.</p>
@@ -296,7 +303,7 @@ heroku open
 
 ```bash
 heroku login
-heroku run "otree reset db"
+heroku run "otree reset db" --APP your_appname
 ```
 
 <p style="text-align:justify;">Or do it manually in the Heroku app, simlarly to the way described earlier. A related blog post on how to deploy your experiment to a server can be found on [Accounting Experiments](https://www.accountingexperiments.com/post/server-deployment/).</p>
