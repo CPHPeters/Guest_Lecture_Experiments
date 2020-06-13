@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+{% if player.treatment == 0 %}
+<p>Please indicate on a scale from 1 to 10 how happy you are with your life in general.</p>
+{% else %}
+<p>How many likes did you get on your last social media post?</p>
+{% endif %}
+
+{% formfields %}
+
+    {% next_button %}
+
+{% endblock %}
+
+

@@ -24,7 +24,11 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    def creating_session(self):
+        import itertools
+        number = itertools.cycle([0,1])
+        for player in self.get_players():
+            player.treatment = next(number)
 
 
 class Group(BaseGroup):
@@ -32,4 +36,6 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    pass
+    treatment = models.IntegerField()
+    question_1 = models.IntegerField(label="", blank=False)
+    question_2 = models.IntegerField(label="", blank=False)
