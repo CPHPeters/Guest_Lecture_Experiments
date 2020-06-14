@@ -1,7 +1,7 @@
 <h1 align="center">Running Online Experiments</h1>
 
 <p>
-Want to learn how to build a state-of-the-art experiment and run it in an online participant pool? This repository will get you started. This repository mainly functions as a companion to guest lectures about programming experiments. However, 
+Want to learn how to build a state-of-the-art experiment and run it in an online participant pool? This repository will get you started. This repository mainly functions as a companion to guest lectures about programming experiments. However, the repository can also be used on a standalone basis. Recent slides and example code are provided in this repository.
 </p>
 
 <p align = "center">
