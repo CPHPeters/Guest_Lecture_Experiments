@@ -11,5 +11,4 @@ class Page2(Page):
     form_model = 'player'
     form_fields = ['question_2']
 
-
 page_sequence = [Page1, Page2]
