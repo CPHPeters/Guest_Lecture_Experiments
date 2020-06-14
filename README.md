@@ -351,7 +351,7 @@ Or do it manually in the Heroku app, simlarly to the way described earlier. A re
 
 Now you have deployed your experiment to the Heroku server you are ready to run the experiment. Go to http://[your_app_name].herokuapp.com and click on "Sessions" in the header. If you want to run the experiment with students, you can create the session and share the session-wide link through e-mail or other channels. In case you want to run your experiment on Amazon's Mechanical Turk, this is easy as oTree is integrated with Amazon's Mechanical Turk. First, access your app in Heroku and click on 'Settings'. Next, go to Config Vars and fill in your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (both available through your Amazon AWS account security credentials), `DATABASE_URL`, `REDIS_URL` (both available through Heroku Add-ons), `OTREE_ADMIN_PASSWORD`, `OTREE_AUTH_LEVEL` (`STUDY` or `DEMO`), and `OTREE_PRODUCTION` (`1` or `0`, if `1` debug information is not displayed). Once you have done so, you can go back to http://[your_app_name].herokuapp.com, click on "Sessions", click on the arrow next to "Create Session" and select "For MTurk". Subsequently, you can select the number of participants you want to recruit and publish your hit. Make sure to have enough money in your Amazon's Mechanical Turk account. A huge advantage of oTree is that payments (including bonuses) can be paid automatically through the oTree environment.
 
-![MTurk Connect](/img/mturk_connect.PNG)
+![MTurk Connect](/img/mturk_connect.png)
 <p align="center"><i>A screenshot of the MTurk integration in oTree.</i></p>
 
 ##
