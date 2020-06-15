@@ -10,12 +10,12 @@ mturk_hit_settings = {
     'title': 'Answer Two Questions',
     'description': 'This study is conducted anonymously. Answer two questions about your daily life.',
     'frame_height': 500,
-    #'preview_template': 'global/MTurkPreview.html',
+    # 'preview_template': 'global/MTurkPreview.html',
     'template': 'global/mturk_template.html',
     'minutes_allotted_per_assignment': 5,
     'expiration_hours': 7*24, # 7 days
     #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-    # 'qualification_requirements': [
+    'qualification_requirements': [
     #     # No-retakers
     #     {
     #         'QualificationTypeId': "30LLG2NWCXJ09FSUO3LGVGEKYUS095",
@@ -39,12 +39,15 @@ mturk_hit_settings = {
     #         'Comparator': "GreaterThanOrEqualTo",
     #         'IntegerValues': [98]
     #     },
-    #     ]
+        ]
 }
 
-SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1.00, participation_fee=0.00, doc="", 'mturk_hit_settings': mturk_hit_settings
-)
+SESSION_CONFIG_DEFAULTS = {
+    'real_world_currency_per_point': 0.00,
+    'participation_fee': 0.10,
+    'doc': "",
+    'mturk_hit_settings': mturk_hit_settings,
+}
 
 SESSION_CONFIGS = [
     dict(
