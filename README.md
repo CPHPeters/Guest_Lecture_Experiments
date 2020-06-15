@@ -355,9 +355,9 @@ Finally, you need to specify settings for your MTurk HIT in `Settings.py`. An ex
 
 ```python
 mturk_hit_settings = {
-    'keywords': ['financial', 'tax', 'study', 'academic'],
-    'title': 'Assess Corporate Tax Strategies ($1.05 for about 7 min)',
-    'description': 'Assess corporate tax strategies of companies for $1.05 for about 7 minutes.',
+    'keywords': ['study', 'academic'],
+    'title': 'Answer Two Questions',
+    'description': 'This study is anonymous, please answer two questions about your daily life.',
     'frame_height': 500,
     #'preview_template': 'global/MTurkPreview.html',
     'template': 'global/mturk_template.html',
