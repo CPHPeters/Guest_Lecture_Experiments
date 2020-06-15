@@ -349,7 +349,58 @@ Or do it manually in the Heroku app, simlarly to the way described earlier. A re
 
 <h2 id="mturk">Publishing Your Experiment on Amazon Mechanical Turk</h2>
 
-Now you have deployed your experiment to the Heroku server you are ready to run the experiment. Go to http://[your_app_name].herokuapp.com and click on "Sessions" in the header. If you want to run the experiment with students, you can create the session and share the session-wide link through e-mail or other channels. In case you want to run your experiment on Amazon's Mechanical Turk, this is easy as oTree is integrated with Amazon's Mechanical Turk. First, access your app in Heroku and click on 'Settings'. Next, go to Config Vars and fill in your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (both available through your Amazon AWS account security credentials), `DATABASE_URL`, `REDIS_URL` (both available through Heroku Add-ons), `OTREE_ADMIN_PASSWORD`, `OTREE_AUTH_LEVEL` (`STUDY` or `DEMO`), and `OTREE_PRODUCTION` (`1` or `0`, if `1` debug information is not displayed). Once you have done so, you can go back to http://[your_app_name].herokuapp.com, click on "Sessions", click on the arrow next to "Create Session" and select "For MTurk". Subsequently, you can select the number of participants you want to recruit and publish your hit. Make sure to have enough money in your Amazon's Mechanical Turk account. A huge advantage of oTree is that payments (including bonuses) can be paid automatically through the oTree environment.
+Now you have deployed your experiment to the Heroku server you are ready to run the experiment. Go to http://[your_app_name].herokuapp.com and click on "Sessions" in the header. If you want to run the experiment with students, you can create the session and share the session-wide link through e-mail or other channels. In case you want to run your experiment on Amazon's Mechanical Turk, this is easy as oTree is integrated with Amazon's Mechanical Turk. First, access your app in Heroku and click on 'Settings'. Next, go to Config Vars and fill in your `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` (both available through your Amazon AWS account security credentials), `DATABASE_URL`, `REDIS_URL` (both available through Heroku Add-ons), `OTREE_ADMIN_PASSWORD`, `OTREE_AUTH_LEVEL` (`STUDY` or `DEMO`), and `OTREE_PRODUCTION` (`1` or `0`, if `1` debug information is not displayed). 
+
+Finally, you need to specify settings for your MTurk HIT in `Settings.py`. An example code can be found below:
+
+```python
+mturk_hit_settings = {
+    'keywords': ['study', 'academic'],
+    'title': 'Answer Two Questions',
+    'description': 'This study is anonymous, please answer two questions about your daily life.',
+    'frame_height': 500,
+    #'preview_template': 'global/MTurkPreview.html',
+    'template': 'global/mturk_template.html',
+    'minutes_allotted_per_assignment': 45,
+    'expiration_hours': 7*24, # 7 days
+    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
+    'qualification_requirements': [
+        # No-retakers
+        {
+            'QualificationTypeId': "30LLG2NWCXJ09FSUO3LGVGEKYUS095",
+            'Comparator': "DoesNotExist",
+        },
+        # Only US
+        {
+            'QualificationTypeId': "00000000000000000071",
+            'Comparator': "EqualTo",
+            'LocaleValues': [{'Country': "US"}]
+        },
+        # At least x HITs approved
+        {
+            'QualificationTypeId': "00000000000000000040",
+            'Comparator': "GreaterThanOrEqualTo",
+            'IntegerValues': [500]
+        },
+        # At least x% of HITs approved
+        {
+            'QualificationTypeId': "000000000000000000L0",
+            'Comparator': "GreaterThanOrEqualTo",
+            'IntegerValues': [98]
+        },
+        ]
+}
+```
+
+The keywords, title, description, and frame height define how the HIT is displayed to participants in Amazon's Mechanical Turk. The minutes allotted are the maximum amount of minutes that a participant can spend on the HIT. Make sure to make this long enough. Exploration hours deal with how long the experiment will be posted on MTurk. Qualification requirements are important as they describe which MTurkers can participate. A few examples are provided.
+
+Once you have done so, you can go back to http://[your_app_name].herokuapp.com, click on "Sessions", click on the arrow next to "Create Session" and select "For MTurk". Subsequently, you can select the number of participants you want to recruit and publish your hit. Make sure to have enough money in your Amazon's Mechanical Turk account. A huge advantage of oTree is that payments (including bonuses) can be paid automatically through the oTree environment.
+
+Also in `Settings.py` add to `SESSION_CONFIG_DEFAULTS` the following to indicate to oTree where the MTurk HIT Settings are located:
+
+```python
+'mturk_hit_settings': mturk_hit_settings,
+```
 
 ![MTurk Connect](/images/mturk_connect.png)
 <p align="center"><i>A screenshot of the MTurk integration in oTree.</i></p>
