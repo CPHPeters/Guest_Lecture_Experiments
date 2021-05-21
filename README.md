@@ -273,7 +273,7 @@ Second, you can use <a href="https://github.com" target="_blank">GitHub</a>. If 
 
 ```bash
 heroku login
-heroku run "otree reset db" --APP your_appname
+heroku run "otree resetdb" --app your_appname
 ```
 Alternatively, you can go to your app in Heroku, click on Heroku Postgres, Settings, and Reset Database.
 
